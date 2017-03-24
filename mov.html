@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+	<!-- Website Title & Description for Search Engine purposes -->
+	<title>Movie OMDB Api</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<link href="includes/css/bootstrap-glyphicons.css" rel="stylesheet">
+	<link href="includes/css/styles.css" rel="stylesheet">
+
+	
+	<!--link rel="stylesheet" type="text/css" href="ombd.css"-->
+	<script type = "text/javascript"
+	src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="path_to/jquery.js"></script>
+	<script type="text/javascript" src="path_to/jquery.simplePagination.js"></script>
+
+	<style type="text/css">
+	img{
+		height: 250px;
+		width: 250px;
+	}
+	</style>
+
+</head>
+<body class="wholesheet" >
+	<header>
+
+		<div class="navbar navbar-fixed-top" >
+			<h3 class="headerid">MOVIE DATAS DISPLAYED</h3>
+
+		</div>
+		<header>
+		</br></br>
+	</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+<div class="col-sm-6 mar1">
+	<form >
+		<label id="search">
+			Search the movie: <input type="text" name="movie" placeholder="movie title" />
+		</label>
+		<button type="submit"  class="btn btn-default" id="submit"><span class="glyphicon glyphicon-search">Go</span></button>
+
+	</form>
+</div>
+</br>
+</br>
+</br>
+
+
+<div id="container">      
+	<!-- <h3 class="title">Title</h3></br>
+
+	<p class="plot">Plot</p></br></br>
+	<span class="poster">Poster</span></br></br></br>
+	<span class="year">Year</span></br></br></br>
+-->
+</div>
+
+<script>
+
+function apicall()
+{
+
+	var $Form = $('form'),$Container = $('#container');
+	$Container.hide();
+
+	$Form.on('submit', function(data){
+		var  mvData;
+		data.preventDefault();
+		$Container.show();
+
+		$.ajax('https://www.omdbapi.com/?s=' + $Form.find('input').val() + '&type=movie&tomatoes=true', {
+			complete: function(par, p_sStatus){
+				mvData = $.parseJSON(par.responseText);
+				$.each(mvData.Search,function(index,value){
+					$.each(value,function  (key,val) {
+						if(key=="Poster")
+							$("#container").append("<img src='"+val+"'>");
+						else
+							$("#container").append("<p>"+key+":"+val+"</p>");
+
+						
+					});
+				});
+// $Container.find('.title').text(mvData.Title);
+// $Container.find('.plot').text(mvData.Plot);
+// $Container.find('.poster').html('<img src="' + mvData.Poster + '" />'+"<br>"+"<br>");
+// $Container.find('.year').text("Released in: "+mvData.Year);
+//
+
+
+
+}
+});
+		$(function() {
+			$(selector).pagination({
+				items: 100,
+				itemsOnPage: 10,
+				cssStyle: 'light-theme'
+			});
+		});
+
+
+	});
+}
+apicall();
+</script>
+
+</body>
+<html>

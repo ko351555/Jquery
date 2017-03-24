@@ -1,0 +1,32 @@
+   .navbar-brand
+   {
+      padding: 13px 15px;
+   }
+   .navbar
+   {
+      background:#819FF7;
+   }
+   .headerid
+   {
+      text-align: center;
+   }
+   .wholesheet
+   {
+      background: url("https://s-media-cache-ak0.pinimg.com/originals/39/34/45/3934456009c587ef13337d880078d84c.jpg")no-repeat;
+      background-size: cover;
+      text-align: center;
+   }
+   .mar1
+   {
+      margin-top: 0px;
+   }
+   #search
+   {
+      font-size: 20px;
+      color:#81F7D8;
+
+   }
+   #buttonsize
+   {
+      font-size: 18px;
+   }
